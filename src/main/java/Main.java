@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Race race = new Race();
-        Car[] cars = new Car[3];
 
         for (int i = 1; i <= 3; i++) {
 
@@ -22,11 +21,13 @@ public class Main {
             }
 
             int speed;
+            final int maxSpeed = 250;
+            final int minSpeed = 0;
             while (true) {
                 try {
                     System.out.println("Укажите максимальную скорость " + i + " автомобиля");
                     speed = Integer.parseInt(scanner.nextLine());
-                    if (speed > 250 || 0 > speed) {
+                    if (speed > maxSpeed || minSpeed > speed) {
                         throw new Exception();
                     } else {
                         break;
@@ -37,8 +38,7 @@ public class Main {
             }
 
             Car car = new Car(model, speed);
-            cars[i-1] = car;
-            race.race(cars[i-1].model, cars[i-1].speed);
+            race.race(car.model, car.speed);
         }
         System.out.println("Самый быстрый автомобиль: " + race.vinner);
     }
